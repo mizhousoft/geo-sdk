@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.mizhousoft</groupId>
+		<artifactId>mizhousoft</artifactId>
+		<version>1.8.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.mizhousoft.sdk</groupId>
+	<artifactId>geo-sdk</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>geo-sdk</name>
+	<description>GEO SDK</description>
+
+	<properties>
+		<commons.version>1.7.0-SNAPSHOT</commons.version>
+		<geo.version>1.0.0-SNAPSHOT</geo.version>
+	</properties>
+
+	<modules>
+		<module>geo-api</module>
+		<module>geo-tianditu</module>
+	</modules>
+
+</project>
