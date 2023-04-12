@@ -1,4 +1,4 @@
-package com.mizhousoft.geo;
+package com.mizhousoft.geo.model;
 
 /**
  * 地址信息

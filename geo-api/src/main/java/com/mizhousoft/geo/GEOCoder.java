@@ -1,5 +1,8 @@
 package com.mizhousoft.geo;
 
+import com.mizhousoft.geo.model.Address;
+import com.mizhousoft.geo.model.Location;
+
 /**
  * 地理编码接口
  *
