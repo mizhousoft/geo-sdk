@@ -18,6 +18,8 @@
 
 	<properties>
 		<commons.version>1.7.0-SNAPSHOT</commons.version>
+		<mizhousoft.boot.version>1.7.0-SNAPSHOT</mizhousoft.boot.version>
+			
 		<geo.version>1.0.0-SNAPSHOT</geo.version>
 	</properties>
 

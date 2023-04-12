@@ -21,9 +21,25 @@
 			<version>${geo.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>com.mizhousoft.boot</groupId>
+			<artifactId>restclient-spring-boot-starter</artifactId>
+			<version>${mizhousoft.boot.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
     		<groupId>org.junit.jupiter</groupId>
     		<artifactId>junit-jupiter</artifactId>
     		<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
