@@ -10,12 +10,12 @@ public class Location
 	/**
 	 * 经度值
 	 */
-	private float lng;
+	private double lng;
 
 	/**
 	 * 纬度值
 	 */
-	private float lat;
+	private double lat;
 
 	/**
 	 * 类别名称
@@ -27,7 +27,7 @@ public class Location
 	 * 
 	 * @return
 	 */
-	public float getLng()
+	public double getLng()
 	{
 		return lng;
 	}
@@ -37,7 +37,7 @@ public class Location
 	 * 
 	 * @param lng
 	 */
-	public void setLng(float lng)
+	public void setLng(double lng)
 	{
 		this.lng = lng;
 	}
@@ -47,7 +47,7 @@ public class Location
 	 * 
 	 * @return
 	 */
-	public float getLat()
+	public double getLat()
 	{
 		return lat;
 	}
@@ -57,7 +57,7 @@ public class Location
 	 * 
 	 * @param lat
 	 */
-	public void setLat(float lat)
+	public void setLat(double lat)
 	{
 		this.lat = lat;
 	}

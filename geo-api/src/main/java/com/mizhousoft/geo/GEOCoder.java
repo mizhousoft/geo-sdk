@@ -28,5 +28,5 @@ public interface GEOCoder
 	 * @return
 	 * @throws GEOException
 	 */
-	Address regeo(float lng, float lat) throws GEOException;
+	Address regeo(double lng, double lat) throws GEOException;
 }

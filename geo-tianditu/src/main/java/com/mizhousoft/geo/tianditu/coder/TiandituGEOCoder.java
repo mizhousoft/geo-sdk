@@ -62,7 +62,7 @@ public class TiandituGEOCoder implements GEOCoder
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Address regeo(float lng, float lat) throws GEOException
+	public Address regeo(double lng, double lat) throws GEOException
 	{
 		String postBody = String.format("{'lon':\"%f\",'lat':%f,'ver':1}", lng, lat);
 		String requestUrl = String.format("http://api.tianditu.gov.cn/geocoder?postStr={json}&type=geocode&tk=%s", profile.getAppKey());
