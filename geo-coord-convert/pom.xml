@@ -9,9 +9,9 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>coordinate-convert</artifactId>
+	<artifactId>geo-coord-convert</artifactId>
 	<packaging>jar</packaging>
-	<name>coordinate-convert</name>
+	<name>geo-coord-convert</name>
 	<description></description>
 
 	<dependencies>
