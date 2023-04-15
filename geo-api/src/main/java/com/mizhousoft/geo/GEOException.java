@@ -1,13 +1,13 @@
 package com.mizhousoft.geo;
 
-import com.mizhousoft.commons.data.NestedRuntimeException;
+import com.mizhousoft.commons.data.NestedException;
 
 /**
  * 异常
  *
  * @version
  */
-public class GEOException extends NestedRuntimeException
+public class GEOException extends NestedException
 {
 	private static final long serialVersionUID = -4408349826481304293L;
 

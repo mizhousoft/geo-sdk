@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.mizhousoft.geo.GEOException;
 import com.mizhousoft.geo.model.Address;
 import com.mizhousoft.geo.model.Location;
 
@@ -25,16 +26,30 @@ public class TiandituGEOCoderTest
 	@Test
 	public void geo()
 	{
-		Location location = geoCoder.geo("株洲市茶陵县湖南龙华农牧发展有限公司东北约682米", null);
+		try
+		{
+			Location location = geoCoder.geo("株洲市茶陵县湖南龙华农牧发展有限公司东北约682米", null);
 
-		Assertions.assertNotNull(location);
+			Assertions.assertNotNull(location);
+		}
+		catch (GEOException e)
+		{
+			Assertions.fail(e);
+		}
 	}
 
 	@Test
 	public void regeo()
 	{
-		Address address = geoCoder.regeo(113.6561111111f, 26.8130555556f);
+		try
+		{
+			Address address = geoCoder.regeo(113.6561111111f, 26.8130555556f);
 
-		Assertions.assertEquals(address.getAddrComponent().getProvince(), "湖南省");
+			Assertions.assertEquals(address.getAddrComponent().getProvince(), "湖南省");
+		}
+		catch (GEOException e)
+		{
+			Assertions.fail(e);
+		}
 	}
 }
