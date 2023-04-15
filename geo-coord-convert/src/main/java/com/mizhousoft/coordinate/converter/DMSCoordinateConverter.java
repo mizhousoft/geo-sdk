@@ -74,16 +74,21 @@ public abstract class DMSCoordinateConverter
 	{
 		int index1 = coordinate.indexOf("°");
 		int index2 = coordinate.indexOf("'");
-		int index3 = coordinate.indexOf("\"");
 
-		if (-1 == index1 || -1 == index2 || -1 == index3)
+		if (-1 == index1 || -1 == index2)
 		{
 			return null;
 		}
 
 		long deg = Integer.valueOf(coordinate.substring(0, index1));
 		long min = Integer.valueOf(coordinate.substring(index1 + 1, index2));
-		double sec = Double.valueOf(coordinate.substring(index2 + 1, index3));
+		double sec = 0f;
+
+		int index3 = coordinate.indexOf("\"");
+		if (-1 != index3)
+		{
+			sec = Double.valueOf(coordinate.substring(index2 + 1, index3));
+		}
 
 		return ImmutableTriple.of(deg, min, sec);
 	}

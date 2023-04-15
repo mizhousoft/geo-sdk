@@ -26,4 +26,19 @@ public class DMSCoordinateConverterTest
 			Assertions.fail(e);
 		}
 	}
+
+	@Test
+	public void convertEN2()
+	{
+		try
+		{
+			DecimalDegreesCoordinates dd = DMSCoordinateConverter.convertEN("114°16'", "41°05'");
+
+			Assertions.assertEquals("41.0833333333 114.2666666667", dd.toString());
+		}
+		catch (CoordinateException e)
+		{
+			Assertions.fail(e);
+		}
+	}
 }
