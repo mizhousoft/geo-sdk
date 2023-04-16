@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileUtils;
@@ -21,7 +23,7 @@ import com.alibaba.excel.ExcelReader;
  */
 public class AreaFileParseTest
 {
-	String SQL_FORMAT = "INSERT INTO `mall_area` (`id`, `name`, `parent_id`, `level`, `ctime`) VALUES (%d, '%s', %d, %d, now());";
+	String SQL_FORMAT = "INSERT INTO `exchange_area` (`id`, `name`, `parent_id`, `level`, `ctime`) VALUES (%d, '%s', %d, %d, now());";
 
 	@Test
 	public void parse()
@@ -47,42 +49,71 @@ public class AreaFileParseTest
 
 		List<String> sqls = new ArrayList<>(3000);
 
-		dataMap.forEach((provName, cityMap) -> {
-			AreaRowData firstData = cityMap.entrySet().iterator().next().getValue().get(0);
-			long provCode = firstData.getProvCode();
+		Iterator<Entry<String, Map<String, List<AreaRowData>>>> iter = dataMap.entrySet().iterator();
+		while (iter.hasNext())
+		{
+			Entry<String, Map<String, List<AreaRowData>>> entry = iter.next();
+			String provName = entry.getKey();
+			Map<String, List<AreaRowData>> cityMap = entry.getValue();
+
+			AreaRowData provData = cityMap.entrySet().iterator().next().getValue().get(0);
+			long provCode = provData.getProvCode();
 
 			String provSQL = String.format(SQL_FORMAT, provCode, provName, 0, 1);
 			sqls.add(provSQL);
 
-			Long cityCode1 = 0l;
+			Long cityCode = 0l;
 			if (cityMap.size() == 1)
 			{
-				cityCode1 = Long.valueOf(firstData.getCityCode() + 100);
-				String citySQL = String.format(SQL_FORMAT, cityCode1, firstData.getCityName(), provCode, 2);
+				cityCode = Long.valueOf(provData.getCityCode() + 100);
+				String citySQL = String.format(SQL_FORMAT, cityCode, provData.getCityName(), provCode, 2);
 				sqls.add(citySQL);
 			}
 
-			cityMap.forEach((cityName, countyList) -> {
+			int codeIndex = 1;
+
+			Iterator<Entry<String, List<AreaRowData>>> citer = cityMap.entrySet().iterator();
+			while (citer.hasNext())
+			{
+				Entry<String, List<AreaRowData>> centry = citer.next();
+				List<AreaRowData> countyList = centry.getValue();
+
 				AreaRowData firstCounty = countyList.get(0);
-				Long cityData = 0l;
 				if (cityMap.size() > 1)
 				{
-					cityData = firstCounty.getCityCode();
-					String citySQL = String.format(SQL_FORMAT, cityData, firstCounty.getCityName(), provCode, 2);
+					if (firstCounty.getCityCode() == provData.getProvCode())
+					{
+						cityCode = provCode + codeIndex;
+						codeIndex = codeIndex + 1;
+					}
+					else
+					{
+						cityCode = firstCounty.getCityCode();
+					}
+
+					String citySQL = String.format(SQL_FORMAT, cityCode, firstCounty.getCityName(), provCode, 2);
 					sqls.add(citySQL);
-				}
-				else
-				{
-					cityData = Long.valueOf(firstData.getCityCode() + 100);
 				}
 
 				for (AreaRowData county : countyList)
 				{
-					String countySQL = String.format(SQL_FORMAT, county.getCountyCode(), county.getCounty(), cityData, 3);
+					long countyCode = county.getCountyCode();
+					if (countyCode == provCode)
+					{
+						countyCode = provCode + codeIndex;
+						codeIndex = codeIndex + 1;
+					}
+					else if (countyCode == cityCode)
+					{
+						countyCode = cityCode + codeIndex;
+						codeIndex = codeIndex + 1;
+					}
+
+					String countySQL = String.format(SQL_FORMAT, countyCode, county.getCounty(), cityCode, 3);
 					sqls.add(countySQL);
 				}
-			});
-		});
+			}
+		}
 
 		try
 		{
