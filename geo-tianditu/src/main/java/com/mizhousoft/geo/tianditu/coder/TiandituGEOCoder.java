@@ -8,11 +8,11 @@ import com.mizhousoft.geo.GEOCoder;
 import com.mizhousoft.geo.GEOException;
 import com.mizhousoft.geo.GEOProfile;
 import com.mizhousoft.geo.model.Address;
-import com.mizhousoft.geo.model.AddressComponent;
+import com.mizhousoft.geo.model.Address.AddressComponent;
 import com.mizhousoft.geo.model.Location;
 import com.mizhousoft.geo.tianditu.modal.TDTGEOResponse;
 import com.mizhousoft.geo.tianditu.modal.TDTReGEOResponse;
-import com.mizhousoft.geo.tianditu.modal.TDTReGEOResult;
+import com.mizhousoft.geo.tianditu.modal.TDTReGEOResponse.TDTReGEOResult;
 
 /**
  * 地理编码接口
