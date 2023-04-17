@@ -81,4 +81,33 @@ public class AddressComponent
 	{
 		this.district = district;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String toString()
+	{
+		StringBuilder builder = new StringBuilder();
+		builder.append("{\"");
+		if (province != null)
+		{
+			builder.append("province\":\"");
+			builder.append(province);
+			builder.append("\", \"");
+		}
+		if (city != null)
+		{
+			builder.append("city\":\"");
+			builder.append(city);
+			builder.append("\", \"");
+		}
+		if (district != null)
+		{
+			builder.append("district\":\"");
+			builder.append(district);
+		}
+		builder.append("\"}");
+		return builder.toString();
+	}
 }

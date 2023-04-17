@@ -57,4 +57,26 @@ public class Address
 		this.addrComponent = addrComponent;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String toString()
+	{
+		StringBuilder builder = new StringBuilder();
+		builder.append("{\"");
+		if (formattedAddr != null)
+		{
+			builder.append("formattedAddr\":\"");
+			builder.append(formattedAddr);
+			builder.append("\", \"");
+		}
+		if (addrComponent != null)
+		{
+			builder.append("addrComponent\":\"");
+			builder.append(addrComponent);
+		}
+		builder.append("\"}");
+		return builder.toString();
+	}
 }
