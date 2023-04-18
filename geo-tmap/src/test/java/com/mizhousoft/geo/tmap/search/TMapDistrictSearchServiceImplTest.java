@@ -1,4 +1,4 @@
-package com.mizhousoft.geo.tianditu.search;
+package com.mizhousoft.geo.tmap.search;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.mizhousoft.geo.DistrictSearchService;
 import com.mizhousoft.geo.GEOException;
-import com.mizhousoft.geo.tianditu.DemoApplication;
+import com.mizhousoft.geo.tmap.DemoApplication;
 
 /**
  * TMapDistrictSearchServiceImplTest

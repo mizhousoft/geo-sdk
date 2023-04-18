@@ -1,4 +1,4 @@
-package com.mizhousoft.geo.tianditu;
+package com.mizhousoft.geo.tmap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,8 +11,8 @@ import com.mizhousoft.commons.restclient.service.RestClientService;
 import com.mizhousoft.geo.DistrictSearchService;
 import com.mizhousoft.geo.GEOCoderService;
 import com.mizhousoft.geo.GEOProfile;
-import com.mizhousoft.geo.tianditu.coder.TMapGEOCoderServiceImpl;
-import com.mizhousoft.geo.tianditu.search.TMapDistrictSearchServiceImpl;
+import com.mizhousoft.geo.tmap.coder.TMapGEOCoderServiceImpl;
+import com.mizhousoft.geo.tmap.search.TMapDistrictSearchServiceImpl;
 
 @ComponentScan("com.mizhousoft")
 @SpringBootApplication
@@ -21,7 +21,7 @@ public class DemoApplication
 	@Autowired
 	private RestClientService restClientService;
 
-	@Value("${geo.tianditu.app-key}")
+	@Value("${geo.tmap.app-key}")
 	private String appKey;
 
 	public static void main(String[] args)

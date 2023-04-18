@@ -1,4 +1,4 @@
-package com.mizhousoft.geo.tianditu.coder;
+package com.mizhousoft.geo.tmap.coder;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import com.mizhousoft.geo.GEOCoderService;
 import com.mizhousoft.geo.GEOException;
 import com.mizhousoft.geo.model.Address;
 import com.mizhousoft.geo.model.Location;
-import com.mizhousoft.geo.tianditu.DemoApplication;
+import com.mizhousoft.geo.tmap.DemoApplication;
 
 /**
  * TiandituGEOCoder Test

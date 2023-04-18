@@ -26,7 +26,7 @@
 	<modules>
 		<module>geo-api</module>
 		<module>geo-coord-convert</module>
-		<module>geo-tianditu</module>
+		<module>geo-tmap</module>
 	</modules>
 
 </project>
