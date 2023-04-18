@@ -8,7 +8,7 @@ import com.mizhousoft.geo.model.Location;
  *
  * @version
  */
-public interface GEOCoder
+public interface GEOCoderService
 {
 	/**
 	 * 地理编码查询

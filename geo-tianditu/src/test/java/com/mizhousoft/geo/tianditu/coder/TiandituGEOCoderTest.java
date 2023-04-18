@@ -22,7 +22,7 @@ import com.mizhousoft.geo.tianditu.DemoApplication;
 public class TiandituGEOCoderTest
 {
 	@Autowired
-	private TiandituGEOCoder geoCoder;
+	private TiandituGEOCoderImpl geoCoder;
 
 	@Test
 	public void geo()

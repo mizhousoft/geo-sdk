@@ -7,9 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 import com.mizhousoft.commons.restclient.service.RestClientService;
-import com.mizhousoft.geo.GEOCoder;
+import com.mizhousoft.geo.GEOCoderService;
 import com.mizhousoft.geo.GEOProfile;
-import com.mizhousoft.geo.tianditu.coder.TiandituGEOCoder;
+import com.mizhousoft.geo.tianditu.coder.TiandituGEOCoderImpl;
 
 @ComponentScan("com.mizhousoft")
 @SpringBootApplication
@@ -24,12 +24,12 @@ public class DemoApplication
 	}
 
 	@Bean
-	public GEOCoder localeResolver()
+	public GEOCoderService localeResolver()
 	{
 		GEOProfile profile = new GEOProfile();
 		profile.setAppKey("");
 
-		TiandituGEOCoder geoCoder = new TiandituGEOCoder();
+		TiandituGEOCoderImpl geoCoder = new TiandituGEOCoderImpl();
 		geoCoder.setProfile(profile);
 		geoCoder.setRestClientService(restClientService);
 

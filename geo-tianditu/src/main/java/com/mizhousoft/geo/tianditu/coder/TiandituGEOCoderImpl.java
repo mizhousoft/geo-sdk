@@ -4,7 +4,7 @@ import com.mizhousoft.commons.json.JSONException;
 import com.mizhousoft.commons.json.JSONUtils;
 import com.mizhousoft.commons.restclient.RestException;
 import com.mizhousoft.commons.restclient.service.RestClientService;
-import com.mizhousoft.geo.GEOCoder;
+import com.mizhousoft.geo.GEOCoderService;
 import com.mizhousoft.geo.GEOException;
 import com.mizhousoft.geo.GEOProfile;
 import com.mizhousoft.geo.model.Address;
@@ -19,7 +19,7 @@ import com.mizhousoft.geo.tianditu.modal.TDTReGEOResponse.TDTReGEOResult;
  *
  * @version
  */
-public class TiandituGEOCoder implements GEOCoder
+public class TiandituGEOCoderImpl implements GEOCoderService
 {
 	/**
 	 * GEOProfile
