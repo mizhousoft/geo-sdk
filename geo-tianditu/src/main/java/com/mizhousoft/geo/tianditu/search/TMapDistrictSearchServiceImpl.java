@@ -41,6 +41,7 @@ public class TMapDistrictSearchServiceImpl implements DistrictSearchService
 		try
 		{
 			String body = restClientService.getForObject(requestUrl, String.class, postBody);
+			System.out.println(body);
 
 			return null;
 		}
@@ -51,16 +52,6 @@ public class TMapDistrictSearchServiceImpl implements DistrictSearchService
 	}
 
 	/**
-	 * 获取profile
-	 * 
-	 * @return
-	 */
-	public GEOProfile getProfile()
-	{
-		return profile;
-	}
-
-	/**
 	 * 设置profile
 	 * 
 	 * @param profile
@@ -68,16 +59,6 @@ public class TMapDistrictSearchServiceImpl implements DistrictSearchService
 	public void setProfile(GEOProfile profile)
 	{
 		this.profile = profile;
-	}
-
-	/**
-	 * 获取restClientService
-	 * 
-	 * @return
-	 */
-	public RestClientService getRestClientService()
-	{
-		return restClientService;
 	}
 
 	/**

@@ -13,14 +13,14 @@ public class TMapReGEOResponse extends TMapResponse
 	 * 结果
 	 */
 	@JsonProperty(value = "result")
-	private TDTReGEOResult result;
+	private TMapReGEOResult result;
 
 	/**
 	 * 结果
 	 *
 	 * @version
 	 */
-	public class TDTReGEOResult
+	public class TMapReGEOResult
 	{
 		/**
 		 * 详细地址
@@ -32,14 +32,14 @@ public class TMapReGEOResponse extends TMapResponse
 		 * 地址
 		 */
 		@JsonProperty(value = "addressComponent")
-		private TDTAddressComponent address;
+		private TMapAddressComponent address;
 
 		/**
 		 * 地址
 		 *
 		 * @version
 		 */
-		public class TDTAddressComponent
+		public class TMapAddressComponent
 		{
 			/**
 			 * 此点最近地点信息
@@ -457,7 +457,7 @@ public class TMapReGEOResponse extends TMapResponse
 		 * 
 		 * @return
 		 */
-		public TDTAddressComponent getAddress()
+		public TMapAddressComponent getAddress()
 		{
 			return address;
 		}
@@ -467,10 +467,11 @@ public class TMapReGEOResponse extends TMapResponse
 		 * 
 		 * @param address
 		 */
-		public void setAddress(TDTAddressComponent address)
+		public void setAddress(TMapAddressComponent address)
 		{
 			this.address = address;
 		}
+
 	}
 
 	/**
@@ -478,7 +479,7 @@ public class TMapReGEOResponse extends TMapResponse
 	 * 
 	 * @return
 	 */
-	public TDTReGEOResult getResult()
+	public TMapReGEOResult getResult()
 	{
 		return result;
 	}
@@ -488,7 +489,7 @@ public class TMapReGEOResponse extends TMapResponse
 	 * 
 	 * @param result
 	 */
-	public void setResult(TDTReGEOResult result)
+	public void setResult(TMapReGEOResult result)
 	{
 		this.result = result;
 	}

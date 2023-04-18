@@ -28,7 +28,7 @@ public class TMapDistrictSearchServiceImplTest
 	{
 		try
 		{
-			districtSearchService.search("", 1, false);
+			districtSearchService.search("中华人民共和国", 1, false);
 		}
 		catch (GEOException e)
 		{

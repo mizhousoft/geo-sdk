@@ -29,7 +29,7 @@ public class DemoApplication
 	public GEOProfile getGEOProfile()
 	{
 		GEOProfile profile = new GEOProfile();
-		profile.setAppKey("");
+		profile.setAppKey("089dff4267792077db952773b4dafea5");
 
 		return profile;
 	}

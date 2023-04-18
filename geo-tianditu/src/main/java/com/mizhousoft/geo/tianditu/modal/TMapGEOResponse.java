@@ -19,14 +19,14 @@ public class TMapGEOResponse extends TMapResponse
 	 * 位置
 	 */
 	@JsonProperty(value = "location")
-	private TDTLocation location;
+	private TMapLocation location;
 
 	/**
 	 * 位置
 	 *
 	 * @version
 	 */
-	public class TDTLocation
+	public class TMapLocation
 	{
 		@JsonProperty(value = "score")
 		private int score;
@@ -181,7 +181,7 @@ public class TMapGEOResponse extends TMapResponse
 	 * 
 	 * @return
 	 */
-	public TDTLocation getLocation()
+	public TMapLocation getLocation()
 	{
 		return location;
 	}
@@ -191,7 +191,7 @@ public class TMapGEOResponse extends TMapResponse
 	 * 
 	 * @param location
 	 */
-	public void setLocation(TDTLocation location)
+	public void setLocation(TMapLocation location)
 	{
 		this.location = location;
 	}

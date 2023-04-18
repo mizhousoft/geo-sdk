@@ -11,8 +11,9 @@ import com.mizhousoft.geo.model.Address;
 import com.mizhousoft.geo.model.Address.AddressComponent;
 import com.mizhousoft.geo.model.Location;
 import com.mizhousoft.geo.tianditu.modal.TMapGEOResponse;
+import com.mizhousoft.geo.tianditu.modal.TMapGEOResponse.TMapLocation;
 import com.mizhousoft.geo.tianditu.modal.TMapReGEOResponse;
-import com.mizhousoft.geo.tianditu.modal.TMapReGEOResponse.TDTReGEOResult;
+import com.mizhousoft.geo.tianditu.modal.TMapReGEOResponse.TMapReGEOResult;
 
 /**
  * 地理编码接口
@@ -50,7 +51,14 @@ public class TMapGEOCoderServiceImpl implements GEOCoderService
 				throw new GEOException("geo failed, msg is " + response.getMsg() + '.');
 			}
 
-			return null;
+			TMapLocation tMapLocation = response.getLocation();
+
+			Location location = new Location();
+			location.setLat(tMapLocation.getLat());
+			location.setLng(tMapLocation.getLon());
+			location.setLevel(tMapLocation.getLevel());
+
+			return location;
 		}
 		catch (RestException | JSONException e)
 		{
@@ -77,7 +85,7 @@ public class TMapGEOCoderServiceImpl implements GEOCoderService
 				throw new GEOException("regeo failed, msg is " + response.getMsg() + '.');
 			}
 
-			TDTReGEOResult result = response.getResult();
+			TMapReGEOResult result = response.getResult();
 
 			AddressComponent addrComponent = new AddressComponent();
 			addrComponent.setProvince(result.getAddress().getProvince());
