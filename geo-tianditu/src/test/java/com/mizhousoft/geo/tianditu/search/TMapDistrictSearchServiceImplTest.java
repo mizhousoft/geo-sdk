@@ -24,11 +24,11 @@ public class TMapDistrictSearchServiceImplTest
 	private DistrictSearchService districtSearchService;
 
 	@Test
-	public void geo()
+	public void search()
 	{
 		try
 		{
-			districtSearchService.search("中华人民共和国", 1, false);
+			districtSearchService.search("中华人民共和国", 2, false);
 		}
 		catch (GEOException e)
 		{

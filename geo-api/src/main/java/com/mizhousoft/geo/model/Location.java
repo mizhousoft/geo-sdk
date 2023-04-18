@@ -81,4 +81,25 @@ public class Location
 	{
 		this.level = level;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String toString()
+	{
+		StringBuilder builder = new StringBuilder();
+		builder.append("{\"lng\":\"");
+		builder.append(lng);
+		builder.append("\", \"lat\":\"");
+		builder.append(lat);
+		builder.append("\", \"");
+		if (level != null)
+		{
+			builder.append("level\":\"");
+			builder.append(level);
+		}
+		builder.append("\"}");
+		return builder.toString();
+	}
 }

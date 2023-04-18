@@ -32,6 +32,11 @@ public class DistrictSearchResult
 		private String cityCode;
 
 		/**
+		 * 子级
+		 */
+		private List<District> children;
+
+		/**
 		 * 获取name
 		 * 
 		 * @return
@@ -90,10 +95,60 @@ public class DistrictSearchResult
 		{
 			this.cityCode = cityCode;
 		}
+
+		/**
+		 * 获取children
+		 * 
+		 * @return
+		 */
+		public List<District> getChildren()
+		{
+			return children;
+		}
+
+		/**
+		 * 设置children
+		 * 
+		 * @param children
+		 */
+		public void setChildren(List<District> children)
+		{
+			this.children = children;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String toString()
+		{
+			StringBuilder builder = new StringBuilder();
+			builder.append("{\"");
+			if (name != null)
+			{
+				builder.append("name\":\"");
+				builder.append(name);
+				builder.append("\", \"");
+			}
+			if (level != null)
+			{
+				builder.append("level\":\"");
+				builder.append(level);
+				builder.append("\", \"");
+			}
+			if (cityCode != null)
+			{
+				builder.append("cityCode\":\"");
+				builder.append(cityCode);
+			}
+			builder.append("\"}");
+			return builder.toString();
+		}
 	}
 
 	/**
 	 * 获取districts
+	 * 
 	 * @return
 	 */
 	public List<District> getDistricts()
@@ -103,6 +158,7 @@ public class DistrictSearchResult
 
 	/**
 	 * 设置districts
+	 * 
 	 * @param districts
 	 */
 	public void setDistricts(List<District> districts)

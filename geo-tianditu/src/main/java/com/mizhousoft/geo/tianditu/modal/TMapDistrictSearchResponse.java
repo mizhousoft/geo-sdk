@@ -300,6 +300,35 @@ public class TMapDistrictSearchResponse extends TMapResponse
 		{
 			this.children = children;
 		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String toString()
+		{
+			StringBuilder builder = new StringBuilder();
+			builder.append("{\"");
+			if (level != null)
+			{
+				builder.append("level\":\"");
+				builder.append(level);
+				builder.append("\", \"");
+			}
+			if (name != null)
+			{
+				builder.append("name\":\"");
+				builder.append(name);
+				builder.append("\", \"");
+			}
+			if (cityCode != null)
+			{
+				builder.append("cityCode\":\"");
+				builder.append(cityCode);
+			}
+			builder.append("\"}");
+			return builder.toString();
+		}
 	}
 
 	/**
