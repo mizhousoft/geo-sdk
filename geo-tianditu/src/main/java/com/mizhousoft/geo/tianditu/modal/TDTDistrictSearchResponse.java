@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @version
  */
-public class DistrictSearchResponse extends TDTResponse
+public class TDTDistrictSearchResponse extends TDTResponse
 {
 	/**
 	 * 数据版本
