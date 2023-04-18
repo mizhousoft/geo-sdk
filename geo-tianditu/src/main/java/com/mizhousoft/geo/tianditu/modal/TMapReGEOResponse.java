@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @version
  */
-public class TDTReGEOResponse extends TDTResponse
+public class TMapReGEOResponse extends TMapResponse
 {
 	/**
 	 * 结果

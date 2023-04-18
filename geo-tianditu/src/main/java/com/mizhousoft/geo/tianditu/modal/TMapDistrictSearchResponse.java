@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @version
  */
-public class TDTDistrictSearchResponse extends TDTResponse
+public class TMapDistrictSearchResponse extends TMapResponse
 {
 	/**
 	 * 数据版本

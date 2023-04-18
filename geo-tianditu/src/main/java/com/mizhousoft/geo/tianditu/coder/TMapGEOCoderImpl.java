@@ -10,9 +10,9 @@ import com.mizhousoft.geo.GEOProfile;
 import com.mizhousoft.geo.model.Address;
 import com.mizhousoft.geo.model.Address.AddressComponent;
 import com.mizhousoft.geo.model.Location;
-import com.mizhousoft.geo.tianditu.modal.TDTGEOResponse;
-import com.mizhousoft.geo.tianditu.modal.TDTReGEOResponse;
-import com.mizhousoft.geo.tianditu.modal.TDTReGEOResponse.TDTReGEOResult;
+import com.mizhousoft.geo.tianditu.modal.TMapGEOResponse;
+import com.mizhousoft.geo.tianditu.modal.TMapReGEOResponse;
+import com.mizhousoft.geo.tianditu.modal.TMapReGEOResponse.TDTReGEOResult;
 
 /**
  * 地理编码接口
@@ -44,7 +44,7 @@ public class TMapGEOCoderImpl implements GEOCoderService
 		{
 			String body = restClientService.getForObject(requestUrl, String.class, postBody);
 
-			TDTGEOResponse response = JSONUtils.parse(body, TDTGEOResponse.class);
+			TMapGEOResponse response = JSONUtils.parse(body, TMapGEOResponse.class);
 			if (!"0".equals(response.getStatus()))
 			{
 				throw new GEOException("geo failed, msg is " + response.getMsg() + '.');
@@ -71,7 +71,7 @@ public class TMapGEOCoderImpl implements GEOCoderService
 		{
 			String body = restClientService.getForObject(requestUrl, String.class, postBody);
 
-			TDTReGEOResponse response = JSONUtils.parse(body, TDTReGEOResponse.class);
+			TMapReGEOResponse response = JSONUtils.parse(body, TMapReGEOResponse.class);
 			if (!"0".equals(response.getStatus()))
 			{
 				throw new GEOException("regeo failed, msg is " + response.getMsg() + '.');

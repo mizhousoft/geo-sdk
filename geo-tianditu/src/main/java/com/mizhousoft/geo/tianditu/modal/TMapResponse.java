@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @version
  */
-public abstract class TDTResponse
+public abstract class TMapResponse
 {
 	/**
 	 * 状态
