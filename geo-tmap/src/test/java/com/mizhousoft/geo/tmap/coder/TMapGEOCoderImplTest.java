@@ -30,7 +30,7 @@ public class TMapGEOCoderImplTest
 	{
 		try
 		{
-			Location location = geoCoderService.geo("株洲市茶陵县湖南龙华农牧发展有限公司东北约682米", null);
+			Location location = geoCoderService.geo("济源市", null);
 
 			Assertions.assertNotNull(location);
 		}
@@ -45,7 +45,7 @@ public class TMapGEOCoderImplTest
 	{
 		try
 		{
-			Address address = geoCoderService.regeo(113.6561111111f, 26.8130555556f);
+			Address address = geoCoderService.regeo(112.597759f, 35.068343f);
 
 			Assertions.assertEquals(address.getAddrComponent().getProvince(), "湖南省");
 		}
