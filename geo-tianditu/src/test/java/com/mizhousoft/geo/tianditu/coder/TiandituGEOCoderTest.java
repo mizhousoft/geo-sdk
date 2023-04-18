@@ -10,6 +10,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.mizhousoft.geo.GEOException;
 import com.mizhousoft.geo.model.Address;
 import com.mizhousoft.geo.model.Location;
+import com.mizhousoft.geo.tianditu.DemoApplication;
 
 /**
  * TiandituGEOCoder Test

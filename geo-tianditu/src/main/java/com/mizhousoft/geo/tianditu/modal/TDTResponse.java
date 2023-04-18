@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * 响应
  *
- * @version  
+ * @version
  */
 public abstract class TDTResponse
 {
@@ -22,7 +22,14 @@ public abstract class TDTResponse
 	private String msg;
 
 	/**
+	 * 返回编码
+	 */
+	@JsonProperty(value = "returncode")
+	private String returnCode;
+
+	/**
 	 * 获取status
+	 * 
 	 * @return
 	 */
 	public String getStatus()
@@ -32,6 +39,7 @@ public abstract class TDTResponse
 
 	/**
 	 * 设置status
+	 * 
 	 * @param status
 	 */
 	public void setStatus(String status)
@@ -41,6 +49,7 @@ public abstract class TDTResponse
 
 	/**
 	 * 获取msg
+	 * 
 	 * @return
 	 */
 	public String getMsg()
@@ -50,10 +59,31 @@ public abstract class TDTResponse
 
 	/**
 	 * 设置msg
+	 * 
 	 * @param msg
 	 */
 	public void setMsg(String msg)
 	{
 		this.msg = msg;
+	}
+
+	/**
+	 * 获取returnCode
+	 * 
+	 * @return
+	 */
+	public String getReturnCode()
+	{
+		return returnCode;
+	}
+
+	/**
+	 * 设置returnCode
+	 * 
+	 * @param returnCode
+	 */
+	public void setReturnCode(String returnCode)
+	{
+		this.returnCode = returnCode;
 	}
 }

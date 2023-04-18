@@ -1,4 +1,4 @@
-package com.mizhousoft.geo.tianditu.coder;
+package com.mizhousoft.geo.tianditu;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import com.mizhousoft.commons.restclient.service.RestClientService;
 import com.mizhousoft.geo.GEOCoder;
 import com.mizhousoft.geo.GEOProfile;
+import com.mizhousoft.geo.tianditu.coder.TiandituGEOCoder;
 
 @ComponentScan("com.mizhousoft")
 @SpringBootApplication
