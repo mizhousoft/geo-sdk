@@ -19,7 +19,7 @@ import com.mizhousoft.geo.tianditu.modal.TDTReGEOResponse.TDTReGEOResult;
  *
  * @version
  */
-public class TiandituGEOCoderImpl implements GEOCoderService
+public class TMapGEOCoderImpl implements GEOCoderService
 {
 	/**
 	 * GEOProfile

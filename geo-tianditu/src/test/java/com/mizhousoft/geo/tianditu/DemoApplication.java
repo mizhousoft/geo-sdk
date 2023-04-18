@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import com.mizhousoft.commons.restclient.service.RestClientService;
 import com.mizhousoft.geo.GEOCoderService;
 import com.mizhousoft.geo.GEOProfile;
-import com.mizhousoft.geo.tianditu.coder.TiandituGEOCoderImpl;
+import com.mizhousoft.geo.tianditu.coder.TMapGEOCoderImpl;
 
 @ComponentScan("com.mizhousoft")
 @SpringBootApplication
@@ -29,10 +29,10 @@ public class DemoApplication
 		GEOProfile profile = new GEOProfile();
 		profile.setAppKey("");
 
-		TiandituGEOCoderImpl geoCoder = new TiandituGEOCoderImpl();
-		geoCoder.setProfile(profile);
-		geoCoder.setRestClientService(restClientService);
+		TMapGEOCoderImpl geoCoderService = new TMapGEOCoderImpl();
+		geoCoderService.setProfile(profile);
+		geoCoderService.setRestClientService(restClientService);
 
-		return geoCoder;
+		return geoCoderService;
 	}
 }

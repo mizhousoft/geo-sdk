@@ -12,7 +12,7 @@ import com.mizhousoft.geo.model.DistrictSearchResult;
  *
  * @version
  */
-public class TDTDistrictSearchServiceImpl implements DistrictSearchService
+public class TMapDistrictSearchServiceImpl implements DistrictSearchService
 {
 	/**
 	 * GEOProfile

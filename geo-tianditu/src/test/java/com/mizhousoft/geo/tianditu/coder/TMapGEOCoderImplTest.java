@@ -19,17 +19,17 @@ import com.mizhousoft.geo.tianditu.DemoApplication;
  */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = DemoApplication.class)
-public class TiandituGEOCoderTest
+public class TMapGEOCoderImplTest
 {
 	@Autowired
-	private TiandituGEOCoderImpl geoCoder;
+	private TMapGEOCoderImpl geoCoderService;
 
 	@Test
 	public void geo()
 	{
 		try
 		{
-			Location location = geoCoder.geo("株洲市茶陵县湖南龙华农牧发展有限公司东北约682米", null);
+			Location location = geoCoderService.geo("株洲市茶陵县湖南龙华农牧发展有限公司东北约682米", null);
 
 			Assertions.assertNotNull(location);
 		}
@@ -44,7 +44,7 @@ public class TiandituGEOCoderTest
 	{
 		try
 		{
-			Address address = geoCoder.regeo(113.6561111111f, 26.8130555556f);
+			Address address = geoCoderService.regeo(113.6561111111f, 26.8130555556f);
 
 			Assertions.assertEquals(address.getAddrComponent().getProvince(), "湖南省");
 		}

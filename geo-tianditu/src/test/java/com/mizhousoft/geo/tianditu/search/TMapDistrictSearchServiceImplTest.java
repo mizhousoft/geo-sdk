@@ -5,7 +5,7 @@ package com.mizhousoft.geo.tianditu.search;
  *
  * @version  
  */
-public class TDTDistrictSearchServiceImplTest
+public class TMapDistrictSearchServiceImplTest
 {
 
 }
