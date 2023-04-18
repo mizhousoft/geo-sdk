@@ -37,7 +37,7 @@ public class AreaSQLExporter
 	@Autowired
 	private DistrictSearchService districtSearchService;
 
-	private Set<Long> countyCodes = new HashSet<>(100);
+	private Set<Long> codeList = new HashSet<>(100);
 
 	@Test
 	public void search()
@@ -53,6 +53,8 @@ public class AreaSQLExporter
 			List<String> sqls = new ArrayList<>(10000);
 
 			List<District> countries = result.getDistricts();
+			collectAreaCode(countries);
+
 			for (District country : countries)
 			{
 				List<District> provinces = country.getChildren();
@@ -97,11 +99,15 @@ public class AreaSQLExporter
 		String provSQL = String.format(SQL_FORMAT, provCode, province.getName(), 0, 1);
 		sqls.add(provSQL);
 
+		codeList.add(provCode);
+
 		long cityCode = provCode + 100;
 		String citySQL = String.format(SQL_FORMAT, cityCode, province.getName(), provCode, 2);
 		sqls.add(citySQL);
 
-		long countyCode = cityCode + 1;
+		codeList.add(cityCode);
+
+		long countyCode = calcNextCountyCode(cityCode + 1);
 		String countySQL = String.format(SQL_FORMAT, countyCode, province.getName(), cityCode, 3);
 		sqls.add(countySQL);
 
@@ -116,16 +122,20 @@ public class AreaSQLExporter
 		String provSQL = String.format(SQL_FORMAT, provCode, province.getName(), 0, 1);
 		sqls.add(provSQL);
 
+		codeList.add(provCode);
+
 		long cityCode = provCode + 100;
 		String citySQL = String.format(SQL_FORMAT, cityCode, province.getName(), provCode, 2);
 		sqls.add(citySQL);
+
+		codeList.add(cityCode);
 
 		List<District> counties = province.getChildren();
 		for (int i = 0; i < counties.size(); ++i)
 		{
 			District county = counties.get(i);
 
-			long countyCode = cityCode + i + 1;
+			long countyCode = calcNextCountyCode(cityCode + i + 1);
 			String countySQL = String.format(SQL_FORMAT, countyCode, county.getName(), cityCode, 3);
 			sqls.add(countySQL);
 		}
@@ -151,13 +161,15 @@ public class AreaSQLExporter
 				String citySQL = String.format(SQL_FORMAT, cityCode, city.getName(), provCode, 2);
 				sqls.add(citySQL);
 
+				codeList.add(cityCode);
+
 				for (District county : counties)
 				{
 					long countyCode = Long.valueOf(county.getCityCode());
 					String countySQL = String.format(SQL_FORMAT, countyCode, county.getName(), cityCode, 3);
 					sqls.add(countySQL);
 
-					countyCodes.add(countyCode);
+					codeList.add(countyCode);
 				}
 			}
 			else
@@ -166,25 +178,68 @@ public class AreaSQLExporter
 				String citySQL = String.format(SQL_FORMAT, cityCode, city.getName(), provCode, 2);
 				sqls.add(citySQL);
 
-				long countyCode = cityCode + 1;
-				while (true)
-				{
-					if (!countyCodes.contains(countyCode))
-					{
-						break;
-					}
+				codeList.add(cityCode);
 
-					countyCode = countyCode + 1;
-				}
-
+				long countyCode = calcNextCountyCode(cityCode + 1);
 				String countySQL = String.format(SQL_FORMAT, countyCode, city.getName(), cityCode, 3);
 				sqls.add(countySQL);
-
-				countyCodes.add(countyCode);
 			}
 		}
 
 		return sqls;
+	}
+
+	private void collectAreaCode(List<District> countries)
+	{
+		for (District country : countries)
+		{
+			List<District> provinces = country.getChildren();
+			for (District province : provinces)
+			{
+				codeList.add(Long.valueOf(province.getCityCode()));
+
+				List<District> cities = province.getChildren();
+				if (CollectionUtils.isEmpty(cities))
+				{
+					continue;
+				}
+
+				for (District city : cities)
+				{
+					codeList.add(Long.valueOf(city.getCityCode()));
+
+					List<District> counties = city.getChildren();
+					if (CollectionUtils.isEmpty(counties))
+					{
+						continue;
+					}
+
+					for (District county : counties)
+					{
+						codeList.add(Long.valueOf(county.getCityCode()));
+					}
+				}
+			}
+		}
+	}
+
+	private long calcNextCountyCode(long startCountyCode)
+	{
+		long countyCode = startCountyCode;
+
+		while (true)
+		{
+			if (!codeList.contains(countyCode))
+			{
+				break;
+			}
+
+			countyCode = countyCode + 1;
+		}
+
+		codeList.add(countyCode);
+
+		return countyCode;
 	}
 
 	private boolean containChildCounty(List<District> cities)
