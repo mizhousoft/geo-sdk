@@ -101,7 +101,7 @@ public class AreaSQLExporter
 
 		codeList.add(provCode);
 
-		long cityCode = provCode + 100;
+		long cityCode = calcNextCityCode(provCode + 100);
 		String citySQL = String.format(SQL_FORMAT, cityCode, province.getName(), provCode, 2);
 		sqls.add(citySQL);
 
@@ -124,7 +124,7 @@ public class AreaSQLExporter
 
 		codeList.add(provCode);
 
-		long cityCode = provCode + 100;
+		long cityCode = calcNextCityCode(provCode + 100);
 		String citySQL = String.format(SQL_FORMAT, cityCode, province.getName(), provCode, 2);
 		sqls.add(citySQL);
 
@@ -151,6 +151,9 @@ public class AreaSQLExporter
 		String provSQL = String.format(SQL_FORMAT, provCode, province.getName(), 0, 1);
 		sqls.add(provSQL);
 
+		// 省直辖县
+		List<District> directCities = new ArrayList<>(100);
+
 		List<District> cities = province.getChildren();
 		for (District city : cities)
 		{
@@ -174,14 +177,22 @@ public class AreaSQLExporter
 			}
 			else
 			{
-				long cityCode = Long.valueOf(city.getCityCode());
-				String citySQL = String.format(SQL_FORMAT, cityCode, city.getName(), provCode, 2);
-				sqls.add(citySQL);
+				directCities.add(city);
+			}
+		}
 
-				codeList.add(cityCode);
+		if (!directCities.isEmpty())
+		{
+			long directCityCode = calcNextCityCode(provCode + 100);
 
-				long countyCode = calcNextCountyCode(cityCode + 1);
-				String countySQL = String.format(SQL_FORMAT, countyCode, city.getName(), cityCode, 3);
+			String citySQL = String.format(SQL_FORMAT, directCityCode, "省直辖县", provCode, 2);
+			sqls.add(citySQL);
+
+			for (District city : directCities)
+			{
+				long countyCode = Long.valueOf(city.getCityCode());
+
+				String countySQL = String.format(SQL_FORMAT, countyCode, city.getName(), directCityCode, 3);
 				sqls.add(countySQL);
 			}
 		}
@@ -221,6 +232,25 @@ public class AreaSQLExporter
 				}
 			}
 		}
+	}
+
+	private long calcNextCityCode(long startCityCode)
+	{
+		long cityCode = startCityCode;
+
+		while (true)
+		{
+			if (!codeList.contains(cityCode))
+			{
+				break;
+			}
+
+			cityCode = cityCode + 100;
+		}
+
+		codeList.add(cityCode);
+
+		return cityCode;
 	}
 
 	private long calcNextCountyCode(long startCountyCode)
