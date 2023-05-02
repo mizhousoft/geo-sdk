@@ -33,7 +33,7 @@ public abstract class DMSCoordinateConverter
 		Triple<Long, Long, Double> lat = parseCoordinate(latitude);
 		if (null == lat)
 		{
-			throw new CoordinateException(longitude + " is illegal.");
+			throw new CoordinateException(latitude + " is illegal.");
 		}
 
 		DegreesMinutesSecondsCoordinates degreesMinutesSecondsCoordinates = new DegreesMinutesSecondsCoordinates(latLocation, lat.getLeft(),
