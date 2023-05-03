@@ -41,4 +41,19 @@ public class DMSCoordinateConverterTest
 			Assertions.fail(e);
 		}
 	}
+
+	@Test
+	public void convertEN3()
+	{
+		try
+		{
+			DecimalDegreesCoordinates dd = DMSCoordinateConverter.convertEN("113°", "43°22′");
+
+			Assertions.assertEquals("43.0000000000 113.0000000000", dd.toString());
+		}
+		catch (CoordinateException e)
+		{
+			Assertions.fail(e);
+		}
+	}
 }
