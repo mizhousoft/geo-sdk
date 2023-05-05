@@ -1,5 +1,6 @@
 package com.mizhousoft.coordinate.converter;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;
 
@@ -91,7 +92,11 @@ public abstract class DMSCoordinateConverter
 			int index3 = coordinate.indexOf("\"");
 			if (-1 != index3)
 			{
-				sec = Double.valueOf(coordinate.substring(index2 + 1, index3));
+				String value = coordinate.substring(index2 + 1, index3);
+				if (!StringUtils.isBlank(value))
+				{
+					sec = Double.valueOf(value);
+				}
 			}
 		}
 
