@@ -81,7 +81,7 @@ public abstract class DMSCoordinateConverter
 			return null;
 		}
 
-		long deg = Integer.valueOf(coordinate.substring(0, index1));
+		long deg = Double.valueOf(coordinate.substring(0, index1)).longValue();
 		double sec = 0f;
 		long min = 0;
 
