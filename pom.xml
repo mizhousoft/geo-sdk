@@ -27,6 +27,7 @@
 		<module>geo-api</module>
 		<module>geo-coord-convert</module>
 		<module>geo-tmap</module>
+		<module>geo-spring-boot-starter</module>
 	</modules>
 
 </project>
