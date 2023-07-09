@@ -82,7 +82,7 @@ public class TMapGEOCoderServiceImpl implements GEOCoderService
 			TMapReGEOResponse response = JSONUtils.parse(body, TMapReGEOResponse.class);
 			if (!"0".equals(response.getStatus()))
 			{
-				throw new GEOException("regeo failed, msg is " + response.getMsg() + '.');
+				throw new GEOException("regeo failed, lng is " + lng + ", lat is " + lat + ", msg is " + response.getMsg() + '.');
 			}
 
 			TMapReGEOResult result = response.getResult();
