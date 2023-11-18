@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.mizhousoft.commons.restclient.service.RestClientService;
 import com.mizhousoft.geo.DistrictSearchService;
 import com.mizhousoft.geo.GEOCoderService;
 import com.mizhousoft.geo.GEOProfile;
@@ -24,9 +23,6 @@ public class TMapConfiguration
 	@Autowired
 	private TMapProperties tMapProperties;
 
-	@Autowired
-	private RestClientService restClientService;
-
 	private GEOProfile profile;
 
 	@Bean
@@ -37,7 +33,6 @@ public class TMapConfiguration
 
 		TMapGEOCoderServiceImpl geoCoderService = new TMapGEOCoderServiceImpl();
 		geoCoderService.setProfile(profile);
-		geoCoderService.setRestClientService(restClientService);
 
 		return geoCoderService;
 	}
@@ -50,7 +45,6 @@ public class TMapConfiguration
 
 		TMapDistrictSearchServiceImpl districtSearchService = new TMapDistrictSearchServiceImpl();
 		districtSearchService.setProfile(profile);
-		districtSearchService.setRestClientService(restClientService);
 
 		return districtSearchService;
 	}

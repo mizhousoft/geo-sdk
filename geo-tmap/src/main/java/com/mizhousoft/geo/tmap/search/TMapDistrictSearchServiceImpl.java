@@ -8,7 +8,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import com.mizhousoft.commons.json.JSONException;
 import com.mizhousoft.commons.json.JSONUtils;
 import com.mizhousoft.commons.restclient.RestException;
-import com.mizhousoft.commons.restclient.service.RestClientService;
 import com.mizhousoft.geo.DistrictSearchService;
 import com.mizhousoft.geo.GEOException;
 import com.mizhousoft.geo.GEOProfile;
@@ -16,6 +15,8 @@ import com.mizhousoft.geo.model.DistrictSearchResult;
 import com.mizhousoft.geo.model.DistrictSearchResult.District;
 import com.mizhousoft.geo.tmap.modal.TMapDistrictSearchResponse;
 import com.mizhousoft.geo.tmap.modal.TMapDistrictSearchResponse.TMapDistrictData;
+
+import kong.unirest.core.Unirest;
 
 /**
  * 行政区查询服务
@@ -30,11 +31,6 @@ public class TMapDistrictSearchServiceImpl implements DistrictSearchService
 	private GEOProfile profile;
 
 	/**
-	 * REST服务
-	 */
-	private RestClientService restClientService;
-
-	/**
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -46,11 +42,10 @@ public class TMapDistrictSearchServiceImpl implements DistrictSearchService
 		String searchForamt = "{\"searchWord\":\"%s\",\"searchType\":\"1\",\"needSubInfo\":\"%b\",\"needAll\":\"%b\",\"needPolygon\":\"%b\",\"needPre\":\"true\"}";
 		String postBody = String.format(searchForamt, searchWord, needSubInfo, needAll, needPolygon);
 
-		String requestUrl = String.format("http://api.tianditu.gov.cn/administrative?postStr={json}&tk=%s", profile.getAppKey());
-
 		try
 		{
-			String body = restClientService.getForObject(requestUrl, String.class, postBody);
+			String body = Unirest.get("http://api.tianditu.gov.cn/administrative").queryString("postStr", postBody)
+			        .queryString("tk", profile.getAppKey()).asString().getBody();
 
 			TMapDistrictSearchResponse response = JSONUtils.parse(body, TMapDistrictSearchResponse.class);
 			if (!"100".equals(response.getReturnCode()))
@@ -102,15 +97,5 @@ public class TMapDistrictSearchServiceImpl implements DistrictSearchService
 	public void setProfile(GEOProfile profile)
 	{
 		this.profile = profile;
-	}
-
-	/**
-	 * 设置restClientService
-	 * 
-	 * @param restClientService
-	 */
-	public void setRestClientService(RestClientService restClientService)
-	{
-		this.restClientService = restClientService;
 	}
 }

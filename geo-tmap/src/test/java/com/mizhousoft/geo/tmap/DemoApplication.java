@@ -1,13 +1,11 @@
 package com.mizhousoft.geo.tmap;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.mizhousoft.commons.restclient.service.RestClientService;
 import com.mizhousoft.geo.DistrictSearchService;
 import com.mizhousoft.geo.GEOCoderService;
 import com.mizhousoft.geo.GEOProfile;
@@ -18,9 +16,6 @@ import com.mizhousoft.geo.tmap.search.TMapDistrictSearchServiceImpl;
 @SpringBootApplication
 public class DemoApplication
 {
-	@Autowired
-	private RestClientService restClientService;
-
 	@Value("${geo.tmap.app-key}")
 	private String appKey;
 
@@ -43,7 +38,6 @@ public class DemoApplication
 	{
 		TMapGEOCoderServiceImpl geoCoderService = new TMapGEOCoderServiceImpl();
 		geoCoderService.setProfile(profile);
-		geoCoderService.setRestClientService(restClientService);
 
 		return geoCoderService;
 	}
@@ -53,7 +47,6 @@ public class DemoApplication
 	{
 		TMapDistrictSearchServiceImpl districtSearchService = new TMapDistrictSearchServiceImpl();
 		districtSearchService.setProfile(profile);
-		districtSearchService.setRestClientService(restClientService);
 
 		return districtSearchService;
 	}

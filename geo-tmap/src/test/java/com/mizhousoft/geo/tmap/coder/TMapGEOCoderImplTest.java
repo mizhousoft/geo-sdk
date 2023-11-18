@@ -47,7 +47,7 @@ public class TMapGEOCoderImplTest
 		{
 			Address address = geoCoderService.regeo(112.597759f, 35.068343f);
 
-			Assertions.assertEquals(address.getAddrComponent().getProvince(), "湖南省");
+			Assertions.assertEquals(address.getAddrComponent().getProvince(), "河南省");
 		}
 		catch (GEOException e)
 		{

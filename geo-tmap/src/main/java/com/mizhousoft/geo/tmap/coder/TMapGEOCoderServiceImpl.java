@@ -3,17 +3,18 @@ package com.mizhousoft.geo.tmap.coder;
 import com.mizhousoft.commons.json.JSONException;
 import com.mizhousoft.commons.json.JSONUtils;
 import com.mizhousoft.commons.restclient.RestException;
-import com.mizhousoft.commons.restclient.service.RestClientService;
 import com.mizhousoft.geo.GEOCoderService;
 import com.mizhousoft.geo.GEOException;
 import com.mizhousoft.geo.GEOProfile;
 import com.mizhousoft.geo.model.Address;
 import com.mizhousoft.geo.model.Address.AddressComponent;
-import com.mizhousoft.geo.tmap.modal.TMapGEOResponse;
-import com.mizhousoft.geo.tmap.modal.TMapReGEOResponse;
-import com.mizhousoft.geo.tmap.modal.TMapGEOResponse.TMapLocation;
-import com.mizhousoft.geo.tmap.modal.TMapReGEOResponse.TMapReGEOResult;
 import com.mizhousoft.geo.model.Location;
+import com.mizhousoft.geo.tmap.modal.TMapGEOResponse;
+import com.mizhousoft.geo.tmap.modal.TMapGEOResponse.TMapLocation;
+import com.mizhousoft.geo.tmap.modal.TMapReGEOResponse;
+import com.mizhousoft.geo.tmap.modal.TMapReGEOResponse.TMapReGEOResult;
+
+import kong.unirest.core.Unirest;
 
 /**
  * 地理编码接口
@@ -28,22 +29,17 @@ public class TMapGEOCoderServiceImpl implements GEOCoderService
 	private GEOProfile profile;
 
 	/**
-	 * REST服务
-	 */
-	private RestClientService restClientService;
-
-	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Location geo(String address, String city) throws GEOException
 	{
 		String postBody = String.format("{\"keyWord\":\"%s\"}", address);
-		String requestUrl = String.format("http://api.tianditu.gov.cn/geocoder?ds={json}&tk=%s", profile.getAppKey());
 
 		try
 		{
-			String body = restClientService.getForObject(requestUrl, String.class, postBody);
+			String body = Unirest.get("http://api.tianditu.gov.cn/geocoder").queryString("ds", postBody)
+			        .queryString("tk", profile.getAppKey()).asString().getBody();
 
 			TMapGEOResponse response = JSONUtils.parse(body, TMapGEOResponse.class);
 			if (!"0".equals(response.getStatus()))
@@ -73,11 +69,11 @@ public class TMapGEOCoderServiceImpl implements GEOCoderService
 	public Address regeo(double lng, double lat) throws GEOException
 	{
 		String postBody = String.format("{'lon':\"%f\",'lat':%f,'ver':1}", lng, lat);
-		String requestUrl = String.format("http://api.tianditu.gov.cn/geocoder?postStr={json}&type=geocode&tk=%s", profile.getAppKey());
 
 		try
 		{
-			String body = restClientService.getForObject(requestUrl, String.class, postBody);
+			String body = Unirest.get("http://api.tianditu.gov.cn/geocoder").queryString("postStr", postBody).queryString("type", "geocode")
+			        .queryString("tk", profile.getAppKey()).asString().getBody();
 
 			TMapReGEOResponse response = JSONUtils.parse(body, TMapReGEOResponse.class);
 			if (!"0".equals(response.getStatus()))
@@ -112,15 +108,5 @@ public class TMapGEOCoderServiceImpl implements GEOCoderService
 	public void setProfile(GEOProfile profile)
 	{
 		this.profile = profile;
-	}
-
-	/**
-	 * 设置restClientService
-	 * 
-	 * @param restClientService
-	 */
-	public void setRestClientService(RestClientService restClientService)
-	{
-		this.restClientService = restClientService;
 	}
 }
