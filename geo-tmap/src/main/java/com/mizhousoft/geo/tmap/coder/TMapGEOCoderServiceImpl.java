@@ -2,7 +2,6 @@ package com.mizhousoft.geo.tmap.coder;
 
 import com.mizhousoft.commons.json.JSONException;
 import com.mizhousoft.commons.json.JSONUtils;
-import com.mizhousoft.commons.restclient.RestException;
 import com.mizhousoft.geo.GEOCoderService;
 import com.mizhousoft.geo.GEOException;
 import com.mizhousoft.geo.GEOProfile;
@@ -15,6 +14,7 @@ import com.mizhousoft.geo.tmap.modal.TMapReGEOResponse;
 import com.mizhousoft.geo.tmap.modal.TMapReGEOResponse.TMapReGEOResult;
 
 import kong.unirest.core.Unirest;
+import kong.unirest.core.UnirestException;
 
 /**
  * 地理编码接口
@@ -56,7 +56,11 @@ public class TMapGEOCoderServiceImpl implements GEOCoderService
 
 			return location;
 		}
-		catch (RestException | JSONException e)
+		catch (UnirestException e)
+		{
+			throw new GEOException(e.getMessage(), e);
+		}
+		catch (JSONException e)
 		{
 			throw new GEOException(e.getMessage(), e);
 		}
@@ -94,7 +98,11 @@ public class TMapGEOCoderServiceImpl implements GEOCoderService
 
 			return address;
 		}
-		catch (RestException | JSONException e)
+		catch (UnirestException e)
+		{
+			throw new GEOException(e.getMessage(), e);
+		}
+		catch (JSONException e)
 		{
 			throw new GEOException(e.getMessage(), e);
 		}

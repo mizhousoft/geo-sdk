@@ -7,7 +7,6 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.mizhousoft.commons.json.JSONException;
 import com.mizhousoft.commons.json.JSONUtils;
-import com.mizhousoft.commons.restclient.RestException;
 import com.mizhousoft.geo.DistrictSearchService;
 import com.mizhousoft.geo.GEOException;
 import com.mizhousoft.geo.GEOProfile;
@@ -17,6 +16,7 @@ import com.mizhousoft.geo.tmap.modal.TMapDistrictSearchResponse;
 import com.mizhousoft.geo.tmap.modal.TMapDistrictSearchResponse.TMapDistrictData;
 
 import kong.unirest.core.Unirest;
+import kong.unirest.core.UnirestException;
 
 /**
  * 行政区查询服务
@@ -60,7 +60,11 @@ public class TMapDistrictSearchServiceImpl implements DistrictSearchService
 
 			return result;
 		}
-		catch (RestException | JSONException e)
+		catch (UnirestException e)
+		{
+			throw new GEOException(e.getMessage(), e);
+		}
+		catch (JSONException e)
 		{
 			throw new GEOException(e.getMessage(), e);
 		}

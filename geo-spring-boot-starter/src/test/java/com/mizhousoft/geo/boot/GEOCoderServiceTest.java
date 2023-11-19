@@ -1,27 +1,34 @@
 package com.mizhousoft.geo.boot;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.mizhousoft.commons.httpclient.unirest.UnirestLogInterceptor;
 import com.mizhousoft.geo.GEOCoderService;
 import com.mizhousoft.geo.GEOException;
 import com.mizhousoft.geo.model.Address;
+
+import kong.unirest.core.Unirest;
 
 /**
  * GEOCoder Test
  *
  * @version
  */
-@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = DemoApplication.class)
 public class GEOCoderServiceTest
 {
 	@Autowired
 	private GEOCoderService geoCoder;
+
+	@BeforeAll
+	public static void init()
+	{
+		Unirest.config().interceptor(new UnirestLogInterceptor());
+	}
 
 	@Test
 	public void regeo()
