@@ -6,20 +6,20 @@
 	<parent>
 		<groupId>com.mizhousoft</groupId>
 		<artifactId>mizhousoft-bom</artifactId>
-		<version>2.0.1</version>
+		<version>2.0.2-SNAPSHOT</version>
 	</parent>
 
 	<groupId>com.mizhousoft.sdk</groupId>
 	<artifactId>geo-sdk</artifactId>
-	<version>2.0.1</version>
+	<version>2.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>geo-sdk</name>
 	<description>GEO SDK</description>
 
 	<properties>
-		<commons.version>2.0.1</commons.version>
+		<commons.version>2.0.2-SNAPSHOT</commons.version>
 			
-		<geo.version>2.0.1</geo.version>
+		<geo.version>2.0.2-SNAPSHOT</geo.version>
 	</properties>
 
 	<modules>
