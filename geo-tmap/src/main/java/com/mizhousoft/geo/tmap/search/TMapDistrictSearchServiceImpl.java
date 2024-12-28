@@ -3,10 +3,9 @@ package com.mizhousoft.geo.tmap.search;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.collections4.CollectionUtils;
-
 import com.mizhousoft.commons.json.JSONException;
 import com.mizhousoft.commons.json.JSONUtils;
+import com.mizhousoft.commons.lang.CollectionUtils;
 import com.mizhousoft.geo.DistrictSearchService;
 import com.mizhousoft.geo.GEOException;
 import com.mizhousoft.geo.GEOProfile;
