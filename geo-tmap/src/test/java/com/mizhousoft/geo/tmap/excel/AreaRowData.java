@@ -1,6 +1,6 @@
 package com.mizhousoft.geo.tmap.excel;
 
-import com.alibaba.excel.annotation.ExcelProperty;
+import cn.idev.excel.annotation.ExcelProperty;
 
 /**
  * AreaRowData

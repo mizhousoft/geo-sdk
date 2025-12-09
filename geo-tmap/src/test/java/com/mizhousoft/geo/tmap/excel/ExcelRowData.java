@@ -1,6 +1,6 @@
 package com.mizhousoft.geo.tmap.excel;
 
-import com.alibaba.excel.annotation.ExcelIgnore;
+import cn.idev.excel.annotation.ExcelIgnore;
 
 /**
  * 数据
