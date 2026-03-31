@@ -43,8 +43,11 @@ public class TMapDistrictSearchServiceImpl implements DistrictSearchService
 
 		try
 		{
-			String body = Unirest.get("http://api.tianditu.gov.cn/administrative").queryString("postStr", postBody)
-			        .queryString("tk", profile.getAppKey()).asString().getBody();
+			String body = Unirest.get("http://api.tianditu.gov.cn/administrative")
+			        .queryString("postStr", postBody)
+			        .queryString("tk", profile.getAppKey())
+			        .asString()
+			        .getBody();
 
 			TMapDistrictSearchResponse response = JSONUtils.parse(body, TMapDistrictSearchResponse.class);
 			if (!"100".equals(response.getReturnCode()))

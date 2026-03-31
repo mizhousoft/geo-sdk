@@ -38,8 +38,11 @@ public class TMapGEOCoderServiceImpl implements GEOCoderService
 
 		try
 		{
-			String body = Unirest.get("http://api.tianditu.gov.cn/geocoder").queryString("ds", postBody)
-			        .queryString("tk", profile.getAppKey()).asString().getBody();
+			String body = Unirest.get("http://api.tianditu.gov.cn/geocoder")
+			        .queryString("ds", postBody)
+			        .queryString("tk", profile.getAppKey())
+			        .asString()
+			        .getBody();
 
 			TMapGEOResponse response = JSONUtils.parse(body, TMapGEOResponse.class);
 			if (!"0".equals(response.getStatus()))
@@ -76,8 +79,12 @@ public class TMapGEOCoderServiceImpl implements GEOCoderService
 
 		try
 		{
-			String body = Unirest.get("http://api.tianditu.gov.cn/geocoder").queryString("postStr", postBody).queryString("type", "geocode")
-			        .queryString("tk", profile.getAppKey()).asString().getBody();
+			String body = Unirest.get("http://api.tianditu.gov.cn/geocoder")
+			        .queryString("postStr", postBody)
+			        .queryString("type", "geocode")
+			        .queryString("tk", profile.getAppKey())
+			        .asString()
+			        .getBody();
 
 			TMapReGEOResponse response = JSONUtils.parse(body, TMapReGEOResponse.class);
 			if (!"0".equals(response.getStatus()))
